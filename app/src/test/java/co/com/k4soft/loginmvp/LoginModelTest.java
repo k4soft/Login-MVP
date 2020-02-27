@@ -49,4 +49,30 @@ public class LoginModelTest {
         verify(view).solicitarUsuario();
     }
 
+
+    @Test
+    public void verificarCredencialesconPasswordVacio(){
+        when(view.getLogin()).thenReturn(new LoginDTO("admin",""));
+        model.setLogin(view.getLogin());
+        model.validarInformacion();
+        verify(view).solicitarPassword();
+    }
+
+
+    @Test
+    public void verificarCredencialesInvalidas(){
+        when(view.getLogin()).thenReturn(new LoginDTO("admin","12345"));
+        model.setLogin(view.getLogin());
+        model.validarInformacion();
+        verify(view).rechazarCredenciales();
+    }
+
+    @Test
+    public void verificarCredencialesValidas(){
+        when(view.getLogin()).thenReturn(new LoginDTO("admin","123"));
+        model.setLogin(view.getLogin());
+        model.validarInformacion();
+        verify(view).aceptarIngreso();
+    }
+
 }

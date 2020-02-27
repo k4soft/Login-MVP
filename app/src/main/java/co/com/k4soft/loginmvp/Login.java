@@ -6,16 +6,28 @@ public interface Login {
 
     interface View{
 
+        void aceptarIngreso();
+
         LoginDTO getLogin();
 
+        void rechazarCredenciales();
+
         void solicitarCredenciales();
+
+        void solicitarPassword();
 
         void solicitarUsuario();
     }
 
     interface Presenter{
 
+        void aceptarIngreso();
+
+        void rechazarCredenciales();
+
         void solicitarCredenciales();
+
+        void solicitarPassword();
 
         void solicitarUsuario();
 

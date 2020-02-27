@@ -2,6 +2,7 @@ package co.com.k4soft.loginmvp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.com.k4soft.loginmvp.dto.LoginDTO;
+import co.com.k4soft.loginmvp.welcome.WelcomeActivity;
 
 public class MainActivity extends AppCompatActivity implements Login.View {
 
@@ -24,8 +26,19 @@ public class MainActivity extends AppCompatActivity implements Login.View {
     private Login.Presenter presenter;
 
     @Override
+    public void aceptarIngreso() {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public LoginDTO getLogin() {
         return loginDTO;
+    }
+
+    @Override
+    public void rechazarCredenciales() {
+        Toast.makeText(getApplicationContext(),R.string.credenciales_no_validas,Toast.LENGTH_SHORT).show();
     }
 
     public void onClikBtnAceptar(View view) {
@@ -41,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements Login.View {
     @Override
     public void solicitarCredenciales() {
         Toast.makeText(getApplicationContext(),R.string.credenciales_requeridas,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void solicitarPassword() {
+        txtPassword.setError(getString(R.string.requerido));
     }
 
     @Override

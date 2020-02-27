@@ -12,9 +12,30 @@ public class LoginPresenter implements Login.Presenter{
     }
 
     @Override
+    public void aceptarIngreso() {
+        if(view != null){
+            view.aceptarIngreso();
+        }
+    }
+
+    @Override
+    public void rechazarCredenciales() {
+        if(view != null){
+            view.rechazarCredenciales();
+        }
+    }
+
+    @Override
     public void solicitarCredenciales() {
         if(view != null){
             view.solicitarCredenciales();
+        }
+    }
+
+    @Override
+    public void solicitarPassword() {
+        if(view != null){
+            view.solicitarPassword();
         }
     }
 

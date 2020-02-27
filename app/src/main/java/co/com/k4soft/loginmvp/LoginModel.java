@@ -24,10 +24,29 @@ public class LoginModel implements Login.Model {
             presenter.solicitarCredenciales();
         } else if (usuarioIsNull() || usuarioIsEmpty()) {
             presenter.solicitarUsuario();
+        } else if (passwordIsNull() || passwordIsEmpty()) {
+            presenter.solicitarPassword();
+        } else {
+            if (credencialesValidas()) {
+                presenter.aceptarIngreso();
+            } else {
+                presenter.rechazarCredenciales();
+            }
         }
-
-
     }
+
+    private boolean credencialesValidas() {
+        return login.getUser().equals("admin") && login.getPassword().equals("123");
+    }
+
+    private boolean passwordIsEmpty() {
+        return "".equals(login.getPassword());
+    }
+
+    private boolean passwordIsNull() {
+        return login.getPassword() == null;
+    }
+
 
     private boolean usuarioIsEmpty() {
         return "".equals(login.getUser());
